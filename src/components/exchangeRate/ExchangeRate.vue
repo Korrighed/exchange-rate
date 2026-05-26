@@ -1,3 +1,5 @@
+<template></template>
+
 <script>
 import { useExchangeRateStore } from '@/stores/exchangeRateStore';
 import { onMounted, onUnmounted } from 'vue';
