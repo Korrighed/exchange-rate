@@ -16,6 +16,10 @@ export default {
         );
         if (!response.ok) throw new Error('Erreur API');
         const data = await response.json();
+        if (data.error) {
+          console.error('Erreur API:', data.error);
+          return;
+        }
         store.setRates(data);
       } catch (err) {
         console.error('Erreur fetch:', err);
