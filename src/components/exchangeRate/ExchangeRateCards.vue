@@ -171,19 +171,20 @@ export default {
 .card-header h3 {
   margin: 0;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 600;
   text-align: left;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  color: #1a1a1a;
 }
 
 .card-code {
-  font-size: 11px;
-  color: #999;
+  font-size: 12px;
+  color: #555;
   margin: 0;
   text-align: left;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-weight: 400;
+  letter-spacing: 0.3px;
 }
 
 .card-rate {
