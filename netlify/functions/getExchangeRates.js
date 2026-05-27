@@ -1,6 +1,16 @@
+const ALLOWED_CURRENCIES = ['XPF', 'EUR', 'USD', 'GBP', 'JPY', 'AUD', 'CAD', 'CHF', 'CNY', 'INR', 'KRW', 'NZD', 'SGD'];
+
 exports.handler = async (event, context) => {
   const apiKey = process.env.EXCHANGE_RATE_API_KEY;
-  const baseCurrency = event.queryStringParameters?.currency || 'XPF';
+  const baseCurrency = (event.queryStringParameters?.currency || 'XPF').toUpperCase();
+
+  if (!ALLOWED_CURRENCIES.includes(baseCurrency)) {
+    return {
+      statusCode: 400,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ error: 'Invalid currency code' })
+    };
+  }
 
   try {
     const response = await fetch(
@@ -13,7 +23,9 @@ exports.handler = async (event, context) => {
       statusCode: 200,
       headers: {
         'Cache-Control': 'public, max-age=3600',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, OPTIONS'
       },
       body: JSON.stringify(data)
     };
@@ -21,7 +33,8 @@ exports.handler = async (event, context) => {
     return {
       statusCode: 500,
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
       },
       body: JSON.stringify({ error: err.message })
     };

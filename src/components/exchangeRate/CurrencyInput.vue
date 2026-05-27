@@ -8,7 +8,7 @@
           <div class="card-code">{{ currencies[baseCurrency].en }}</div>
         </div>
         <div class="amount-input-wrapper">
-          <input v-model.number="amount" type="number" min="1" class="amount-value">
+          <input :value="amount" @input="setAmount($event.target.valueAsNumber)" type="number" min="1" class="amount-value" :disabled="isLoading">
           <span class="amount-currency">{{ baseCurrency }}</span>
         </div>
       </div>
@@ -17,16 +17,22 @@
 </template>
 
 <script>
+import { computed } from 'vue';
 import { currencies, getFlagUrl } from '@/data/currencies';
 import { useExchangeConversion } from '@/composables/useExchangeConversion';
+import { useExchangeRateStore } from '@/stores/exchangeRateStore';
 
 export default {
   setup() {
-    const { amount, baseCurrency } = useExchangeConversion();
+    const store = useExchangeRateStore();
+    const { amount, baseCurrency, setAmount } = useExchangeConversion();
+    const isLoading = computed(() => store.isLoading);
 
     return {
       amount,
       baseCurrency,
+      setAmount,
+      isLoading,
       currencies,
       getFlagUrl
     };
@@ -44,14 +50,6 @@ export default {
 .amount-input-container .card {
   width: 100%;
   max-width: 600px;
-  padding: 0;
-  background: transparent;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: transform 0.2s, box-shadow 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  border-radius: 4px;
   cursor: default;
 }
 
@@ -82,49 +80,12 @@ export default {
 }
 
 .card-content {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex: 1;
-  border: 1px solid #ddd;
-  padding: 10px 15px;
   height: 5vh;
   width: 20vw;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 4px;
-}
-
-.card-header {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  min-width: 200px;
 }
 
 .flag {
   width: 5vw;
   height: 8vh;
-  border-radius: 3px;
-  object-fit: cover;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15), inset 0 0 1px rgba(0, 0, 0, 0.1);
-}
-
-.card-header h3 {
-  margin: 0;
-  font-size: 13px;
-  font-weight: 600;
-  text-align: left;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: #1a1a1a;
-}
-
-.card-code {
-  font-size: 12px;
-  color: #555;
-  margin: 0;
-  text-align: left;
-  font-weight: 400;
-  letter-spacing: 0.3px;
 }
 </style>

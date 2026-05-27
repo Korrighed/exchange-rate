@@ -1,11 +1,11 @@
-import { ref, computed } from 'vue';
+import { computed } from 'vue';
 import { useExchangeRateStore } from '@/stores/exchangeRateStore';
 
 export const useExchangeConversion = () => {
   const store = useExchangeRateStore();
-  const amount = ref(100);
 
   const baseCurrency = computed(() => store.baseCurrency);
+  const amount = computed(() => store.amount);
 
   const getConversionRate = (targetCurrency) => {
     if (!store.rates?.conversion_rates) return 0;
@@ -19,12 +19,16 @@ export const useExchangeConversion = () => {
 
   const convertAmount = (targetCurrency) => {
     const rate = getConversionRate(targetCurrency);
-    return (rate * amount.value).toFixed(2);
+    return (rate * store.amount).toFixed(2);
   };
 
   const setBaseCurrency = (currency) => {
     store.setBaseCurrency(currency);
-    amount.value = 100;
+    store.setAmount(100);
+  };
+
+  const setAmount = (value) => {
+    store.setAmount(value);
   };
 
   return {
@@ -32,6 +36,7 @@ export const useExchangeConversion = () => {
     baseCurrency,
     convertAmount,
     setBaseCurrency,
+    setAmount,
     getConversionRate
   };
 };

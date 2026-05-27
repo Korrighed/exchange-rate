@@ -1,16 +1,21 @@
 <template>
-  <div v-if="displayedRates">
+  <div v-if="displayedRates || isLoading">
     <Transition name="fade" mode="out-in">
       <CurrencyInput :key="baseCurrency" />
     </Transition>
     <div class="cards-container">
-      <CurrencyCard
-        v-for="(rate, code) in displayedRates"
-        :key="code"
-        :code="code"
-        :rate="convertAmount(code)"
-        @select="setBaseCurrency(code)"
-      />
+      <template v-if="isLoading">
+        <div v-for="i in 4" :key="`skeleton-${i}`" class="card-skeleton"></div>
+      </template>
+      <template v-else>
+        <CurrencyCard
+          v-for="(rate, code) in displayedRates"
+          :key="code"
+          :code="code"
+          :rate="convertAmount(code)"
+          @select="setBaseCurrency(code)"
+        />
+      </template>
     </div>
   </div>
 </template>
@@ -44,7 +49,9 @@ export default {
       return filtered;
     });
 
-    return { displayedRates, convertAmount, setBaseCurrency, baseCurrency };
+    const isLoading = computed(() => store.isLoading);
+
+    return { displayedRates, convertAmount, setBaseCurrency, baseCurrency, isLoading };
   }
 };
 </script>
@@ -55,6 +62,20 @@ export default {
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   padding: 0;
+}
+
+.card-skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  height: 120px;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }
 
 .fade-enter-active,

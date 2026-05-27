@@ -10,6 +10,7 @@ export default {
     let interval;
 
     const fetchExchangeRates = async () => {
+      store.setIsLoading(true);
       try {
         const response = await fetch(
           '/.netlify/functions/getExchangeRates?currency=XPF'
@@ -23,6 +24,8 @@ export default {
         store.setRates(data);
       } catch (err) {
         console.error('Erreur fetch:', err);
+      } finally {
+        store.setIsLoading(false);
       }
     };
 
