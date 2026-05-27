@@ -11,11 +11,18 @@ exports.handler = async (event, context) => {
 
     return {
       statusCode: 200,
+      headers: {
+        'Cache-Control': 'public, max-age=3600',
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify(data)
     };
   } catch (err) {
     return {
       statusCode: 500,
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({ error: err.message })
     };
   }

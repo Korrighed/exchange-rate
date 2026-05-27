@@ -24,7 +24,7 @@ export default {
 
     onMounted(() => {
       fetchExchangeRates();
-      interval = setInterval(fetchExchangeRates, 5 * 60 * 1000);
+      interval = setInterval(fetchExchangeRates, 60 * 60 * 1000);
     });
 
     onUnmounted(() => clearInterval(interval));
