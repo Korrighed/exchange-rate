@@ -44,7 +44,8 @@ export default {
 .amount-input-container {
   display: flex;
   justify-content: center;
-  margin-bottom: 10px;
+  margin-top: 0.5vh;
+  margin-bottom: 5vh;
 }
 
 .amount-input-container .card {
