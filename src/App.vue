@@ -35,10 +35,17 @@ export default {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
 }
 
 .main-content {
   flex: 1;
   margin-inline: 8vw;
+}
+
+@media (max-width: 767px) {
+  .main-content {
+    margin-inline: 1rem;
+  }
 }
 </style>

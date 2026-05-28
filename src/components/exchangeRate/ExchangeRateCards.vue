@@ -51,7 +51,14 @@ export default {
 
     const isLoading = computed(() => store.isLoading);
 
-    return { displayedRates, convertAmount, setBaseCurrency, baseCurrency, isLoading };
+    const handleSelectCurrency = (code) => {
+      setBaseCurrency(code);
+      if (window.innerWidth <= 767) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    };
+
+    return { displayedRates, convertAmount, setBaseCurrency: handleSelectCurrency, baseCurrency, isLoading };
   }
 };
 </script>
@@ -59,9 +66,22 @@ export default {
 <style scoped>
 .cards-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 20px;
   padding: 0;
+}
+
+@media (max-width: 767px) {
+  .cards-container {
+    gap: 35px;
+    margin-bottom: 30px;
+  }
+}
+
+@media (min-width: 768px) {
+  .cards-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .card-skeleton {

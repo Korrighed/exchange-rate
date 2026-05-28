@@ -1,6 +1,6 @@
 <template>
   <div class="amount-input-container">
-    <div class="card">
+    <div class="card" @click="$refs.amountInput?.focus()">
       <img :src="getFlagUrl(baseCurrency)" :alt="baseCurrency" class="flag">
       <div class="card-content">
         <div class="card-header">
@@ -8,7 +8,7 @@
           <div class="card-code">{{ currencies[baseCurrency].en }}</div>
         </div>
         <div class="amount-input-wrapper">
-          <input :value="amount" @input="setAmount($event.target.valueAsNumber)" type="number" min="1" class="amount-value" :disabled="isLoading">
+          <input ref="amountInput" :value="amount" @input="setAmount($event.target.valueAsNumber)" type="number" min="1" class="amount-value" :disabled="isLoading">
           <span class="amount-currency">{{ baseCurrency }}</span>
         </div>
       </div>
@@ -44,7 +44,7 @@ export default {
 .amount-input-container {
   display: flex;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .amount-input-container .card {
@@ -64,11 +64,13 @@ export default {
   padding: 8px 12px;
   border: 1px solid #ddd;
   border-radius: 3px;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
-  width: 100px;
+  flex: 1;
+  min-width: 60px;
   background: white;
   text-align: right;
+  box-sizing: border-box;
 }
 
 .amount-currency {
@@ -79,13 +81,19 @@ export default {
   font-weight: 500;
 }
 
-.card-content {
-  height: 5vh;
-  width: 20vw;
-}
+@media (max-width: 767px) {
+  .amount-input-container .card {
+    max-width: 100%;
+  }
 
-.flag {
-  width: 5vw;
-  height: 8vh;
+  .amount-value {
+    flex: 0;
+    width: 80px;
+  }
+
+  .amount-input-container {
+    margin-bottom: 40px;
+    margin-top: 20px;
+  }
 }
 </style>

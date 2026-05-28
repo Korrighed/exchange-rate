@@ -18,7 +18,7 @@ export default {
 <style scoped>
 .app-footer {
   width: 100%;
-  padding: 8px 0;
+  padding: 2px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   background: rgba(255, 255, 255, 0.08);
   flex-shrink: 0;
@@ -44,5 +44,21 @@ export default {
 .footer-text a:hover {
   color: rgba(255, 255, 255, 1);
   text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+  .app-footer {
+    padding: 16px 0;
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .footer-content {
+    margin-inline: 1rem;
+  }
+
+  .footer-text {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+  }
 }
 </style>

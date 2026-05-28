@@ -17,8 +17,9 @@ export default {
 <style scoped>
 .app-header {
   width: 100%;
-  padding: 16px 0 12px 0;
+  padding: 5px 0 3px 0;
   flex-shrink: 0;
+
 }
 
 .header-content {
@@ -43,6 +44,6 @@ h1 {
 hr {
   border: none;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
-  margin: 12px 0 0 0;
+  margin: 5px 0px 5px 0;
 }
 </style>

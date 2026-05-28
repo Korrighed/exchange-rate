@@ -1,5 +1,5 @@
 <template>
-  <div class="card" @click="$emit('select')">
+  <div class="card" @click="selectCurrency" :class="{ active: isActive }">
     <img :src="getFlagUrl(code)" :alt="code" class="flag">
     <div class="card-content">
       <div class="card-header">
@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import { ref } from 'vue';
 import { currencies, getFlagUrl } from '@/data/currencies';
 
 export default {
@@ -29,8 +30,18 @@ export default {
     }
   },
   emits: ['select'],
-  setup() {
-    return { currencies, getFlagUrl };
+  setup(props, { emit }) {
+    const isActive = ref(false);
+
+    const selectCurrency = () => {
+      isActive.value = true;
+      emit('select');
+      setTimeout(() => {
+        isActive.value = false;
+      }, 200);
+    };
+
+    return { currencies, getFlagUrl, isActive, selectCurrency };
   }
 };
 </script>
@@ -45,15 +56,13 @@ export default {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
-.card-content {
-  height: 5vh;
-  width: 20vw;
+@media (max-width: 767px) {
+  .card.active {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  }
 }
 
-.flag {
-  width: 5vw;
-  height: 8vh;
-}
 
 .card-rate {
   display: flex;
