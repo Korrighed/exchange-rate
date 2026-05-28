@@ -66,12 +66,12 @@ export default {
 .rate-value {
   font-size: 20px;
   font-weight: bold;
-  color: #42b983;
+  color: #0431b4;
 }
 
 .rate-code {
   font-size: 14px;
-  color: #999;
+  color: #3a3a3a;
   text-transform: uppercase;
 }
 </style>

@@ -73,7 +73,7 @@ export default {
 
 .amount-currency {
   font-size: 14px;
-  color: #999;
+  color: #3a3a3a;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-weight: 500;

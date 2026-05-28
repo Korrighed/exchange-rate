@@ -1,8 +1,9 @@
 <template>
   <header class="app-header">
     <div class="header-content">
-      <h1>Taux de change XPF (rafraîchis toutes les heures)</h1>
-      <p class="subtitle">Exchange rates (refreshed every hour)</p>
+      <h1>Taux de change · mis à jour toutes les heures</h1>
+      <p class="subtitle">Exchange rates · refreshed every hour</p>
+      <hr>
     </div>
   </header>
 </template>
@@ -37,5 +38,11 @@ h1 {
   font-size: 13px;
   font-style: italic;
   color: rgba(255, 255, 255, 0.8);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  margin: 12px 0 0 0;
 }
 </style>

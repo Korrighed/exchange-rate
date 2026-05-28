@@ -1,5 +1,5 @@
 export const currencies = {
-  XPF: { name: 'Franc pacifique', en: 'Pacific franc', country: 'nc' },
+  XPF: { name: 'Franc pacifique', en: 'Pacific Franc', country: 'fr' },
   AUD: { name: 'Dollar australien', en: 'Australian Dollar', country: 'au' },
   NZD: { name: 'Dollar néo-zélandais', en: 'New Zealand Dollar', country: 'nz' },
   CAD: { name: 'Dollar canadien', en: 'Canadian Dollar', country: 'ca' },

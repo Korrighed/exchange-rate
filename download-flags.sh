@@ -15,6 +15,7 @@ flags=(
   "gb:gb"
   "jp:jp"
   "vu:vu"
+  "fr:fr"
 )
 
 for flag in "${flags[@]}"; do
