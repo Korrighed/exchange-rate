@@ -70,6 +70,7 @@ export default {
   flex: 1;
   min-width: 60px;
   background: white;
+  color: black;
   text-align: right;
   box-sizing: border-box;
 }
