@@ -6,6 +6,7 @@ export const useExchangeRateStore = defineStore('exchangeRate', () => {
   const baseCurrency = ref('XPF');
   const amount = ref(100);
   const isLoading = ref(false);
+  const lastUpdated = ref(null);
 
   const setRates = (data) => {
     rates.value = data;
@@ -23,5 +24,9 @@ export const useExchangeRateStore = defineStore('exchangeRate', () => {
     isLoading.value = loading;
   };
 
-  return { rates, setRates, baseCurrency, setBaseCurrency, amount, setAmount, isLoading, setIsLoading };
+  const setLastUpdated = (date) => {
+    lastUpdated.value = date;
+  };
+
+  return { rates, setRates, baseCurrency, setBaseCurrency, amount, setAmount, isLoading, setIsLoading, lastUpdated, setLastUpdated };
 });

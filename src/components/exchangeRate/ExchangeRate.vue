@@ -22,6 +22,7 @@ export default {
           return;
         }
         store.setRates(data);
+        store.setLastUpdated(new Date());
       } catch (err) {
         console.error('Erreur fetch:', err);
       } finally {

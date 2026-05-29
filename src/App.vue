@@ -2,8 +2,7 @@
   <div id="app">
     <Header />
     <main class="main-content">
-      <ExchangeRate />
-      <ExchangeRateCards />
+      <router-view />
     </main>
     <Footer />
   </div>
@@ -12,15 +11,11 @@
 <script>
 import Header from '@/components/layout/Header.vue';
 import Footer from '@/components/layout/Footer.vue';
-import ExchangeRate from '@/components/exchangeRate/ExchangeRate.vue';
-import ExchangeRateCards from '@/components/exchangeRate/ExchangeRateCards.vue';
 
 export default {
   components: {
     Header,
-    Footer,
-    ExchangeRate,
-    ExchangeRateCards
+    Footer
   }
 };
 </script>
