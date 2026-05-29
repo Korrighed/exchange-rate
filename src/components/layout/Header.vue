@@ -24,7 +24,7 @@ export default {
     const lastUpdated = computed(() => store.lastUpdated);
     const formattedDate = computed(() => {
       if (!lastUpdated.value) return '';
-      return lastUpdated.value.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+      return new Date(lastUpdated.value).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
     });
     return { lastUpdated, formattedDate };
   }

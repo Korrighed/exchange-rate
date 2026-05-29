@@ -25,8 +25,16 @@ export const useExchangeRateStore = defineStore('exchangeRate', () => {
   };
 
   const setLastUpdated = (date) => {
-    lastUpdated.value = date;
+    lastUpdated.value = date instanceof Date ? date.getTime() : date;
   };
 
   return { rates, setRates, baseCurrency, setBaseCurrency, amount, setAmount, isLoading, setIsLoading, lastUpdated, setLastUpdated };
+}, {
+  persist: {
+    pick: ['rates', 'lastUpdated'],
+    serializer: {
+      serialize: JSON.stringify,
+      deserialize: JSON.parse
+    }
+  }
 });
