@@ -7,7 +7,7 @@
       <template v-if="isLoading">
         <div v-for="i in 4" :key="`skeleton-${i}`" class="card-skeleton"></div>
       </template>
-      <TransitionGroup v-else name="card-appear" tag="div" class="cards-inner">
+      <template v-else>
         <CurrencyCard
           v-for="(rate, code) in displayedRates"
           :key="code"
@@ -15,7 +15,7 @@
           :rate="convertAmount(code)"
           @select="setBaseCurrency(code)"
         />
-      </TransitionGroup>
+      </template>
     </div>
   </div>
 </template>
@@ -65,35 +65,23 @@ export default {
 
 <style scoped>
 .cards-container {
-  padding: 0;
-}
-
-.cards-inner {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   gap: 20px;
+  padding: 0;
 }
 
 @media (max-width: 767px) {
-  .cards-inner {
+  .cards-container {
     gap: 35px;
     margin-bottom: 30px;
   }
 }
 
 @media (min-width: 768px) {
-  .cards-inner {
+  .cards-container {
     grid-template-columns: repeat(2, 1fr);
   }
-}
-
-/* Animation d'apparition des cards au chargement initial */
-.card-appear-enter-active {
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-.card-appear-enter-from {
-  opacity: 0;
-  transform: translateY(10px);
 }
 
 .card-skeleton {
