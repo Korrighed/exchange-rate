@@ -5,10 +5,6 @@
       <p class="subtitle">Exchange rates · refreshed every hour</p>
       <p v-if="lastUpdated" class="last-updated">Dernière mise à jour · Last updated : {{ formattedDate }}</p>
       <hr>
-      <nav class="api-nav">
-        <router-link to="/" class="nav-link">Composition API</router-link>
-        <router-link to="/option" class="nav-link">Option API</router-link>
-      </nav>
     </div>
   </header>
 </template>

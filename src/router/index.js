@@ -1,10 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import CompositionView from '@/views/CompositionView.vue'
-import OptionView from '@/views/OptionView.vue'
 
 const routes = [
-  { path: '/', component: CompositionView },
-  { path: '/option', component: OptionView }
+  { path: '/', component: CompositionView }
 ]
 
 const router = createRouter({

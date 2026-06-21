@@ -1,6 +1,5 @@
 <template>
   <div>
-    <p class="api-badge">Composition API</p>
     <ExchangeRate />
     <ExchangeRateCards />
   </div>
@@ -17,13 +16,3 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-.api-badge {
-  margin: 10px 0 0 0;
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.35);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  text-align: right;
-}
-</style>
